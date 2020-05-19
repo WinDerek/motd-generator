@@ -9,7 +9,6 @@
   "author": "DerekDick",
   "license": "ISC",
   "dependencies": {
-    "ascii-art-ansi": "^1.3.3",
     "boxen": "^4.2.0",
     "figlet": "^1.4.0"
   }

@@ -1,6 +1,7 @@
 const boxen = require('boxen');
 const figlet = require('figlet');
 const chalk = require("chalk");
+const fs = require("fs");
 
 const LOGO_COLOR = "#00e640";
 const BORDER_COLOR = "#00e640";
@@ -94,9 +95,17 @@ var numSpaces = Math.floor((maxLineWidth - warning.length) / 2);
 warning = chalk.bgHex(WARNING_COLOR).hex("#FFFFFF")(warning);
 warning = wrapStrWithSpaces(warning, numSpaces);
 
+
 boxContent = logo + "\n" + title + "\n" + promptContent + "\n" + warning;
 console.log(boxen(boxContent, boxenOptions));
-
+// fs.writeFile("motd", boxen(boxContent, boxenOptions), "utf8", function (err) {
+//     if (err) return console.log(err);
+//     console.log('Successfully written to the file \'./motd\'.');
+// });
+// var output = boxen(boxContent, boxenOptions);
+// console.log(typeof(output));
+// console.log(output[output.length-2]);
+// console.log(output[output.length-1]);
 
 function wrapStrWithSpacesToWidth(str, width) {
     var numSpaces = Math.floor((width - str.length) / 2);
