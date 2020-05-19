@@ -1,4 +1,4 @@
-# An Message-Of-The-Day (motd) generator
+# A Message-Of-The-Day (motd) generator
 
 Sometimes your want to show colorful text in the Message-Of-The-Day (motd), but you cannot edit the file in some plain text editor. This tool allows you to generate the Message-Of-The-Day (motd) file for Unix systems: `/etc/motd` easily!
 
@@ -21,6 +21,7 @@ $ sudo mv ./motd /etc/motd # Replace the original motd file with the generated o
 ```
 
 > `script` is a utility program in Linux kernel and you do not need to install any other packages.
+> Currently the `script` on macOS is out dated, and doesn't support the `-c` option. I will try to get around it in future.
 
 ## Example
 
