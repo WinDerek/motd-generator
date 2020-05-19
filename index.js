@@ -1,10 +1,12 @@
 const boxen = require('boxen');
 const figlet = require('figlet');
-const color = require("chalk");
+const chalk = require("chalk");
 
-// console.log(boxen('unicorn', {padding: 1}));
-
-// console.log(boxen('unicorn', {padding: 1, margin: 1, borderStyle: 'double'}));
+const LOGO_COLOR = "#00e640";
+const BORDER_COLOR = "#00e640";
+const TITLE_COLOR = "#00e640";
+const PROMPT_COLOR = "#ecf0f1";
+const WARNING_COLOR = "#cf000f";
 
 var selectedFonts = [ 'Alpha', 'Big', 'DOS Rebel', 'Fender', 'Larry 3D', 'Larry 3D 2', 'Lean', '' ]
 
@@ -34,7 +36,7 @@ const boxenOptions = {
     padding: 0,
     margin: 0,
     borderStyle: "round",
-    borderColor: "white",
+    borderColor: BORDER_COLOR,
     backgroundColor: "black"
 };
 
@@ -51,6 +53,7 @@ const boxenOptions = {
 //     console.log(data);
 // }
 
+// For logo
 var logo = figlet.textSync('IID', { font: 'Alpha' }, function(err, data) {
     if (err) {
         console.log('Something went wrong...');
@@ -61,14 +64,21 @@ var logo = figlet.textSync('IID', { font: 'Alpha' }, function(err, data) {
 var maxLineWidth = 0;
 var logoLines = logo.split("\n");
 for (var i = 0; i < logoLines.length; i++) {
-    // console.log(line);
     var line = logoLines[i];
     if (maxLineWidth < line.length) {
         maxLineWidth = line.length;
     }
 }
-prompt = "This is a public server for everyone in our lab. Please try to do installations or modifications using your own account rather than the root account. If you don't know what you are doing using sudo, please stop it.";
-promptLines = prompt.match(/.{1,50}/g);
+logo = chalk.hex(LOGO_COLOR)(logo);
+
+// For title
+var title = "Welcome to robert-server of the IID lab!";
+title = wrapStrWithSpacesToWidth(title, maxLineWidth);
+title = chalk.hex(TITLE_COLOR)(title);
+
+// For prompt
+prompt = "This is a public server for everyone in our lab. Please try to do installations or modifications using your own account rather than the root account.";
+promptLines = prompt.match(/.{1,47}/g);
 var promptContent = "";
 var numSpaces = Math.floor((maxLineWidth - promptLines[0].length) / 2);
 for (var i = 0; i < promptLines.length - 1; i++) {
@@ -76,8 +86,16 @@ for (var i = 0; i < promptLines.length - 1; i++) {
     promptContent += wrappedLine + "\n";
 }
 promptContent += wrapStrWithSpaces(promptLines[promptLines.length-1], numSpaces);
-boxContent = logo + "\n" + promptContent;
-console.log(boxen(color.hex("#2D90D8")(boxContent), boxenOptions));
+promptContent = chalk.hex(PROMPT_COLOR)(promptContent);
+
+// For warning
+var warning = "If you don't know what you are doing with sudo, please stop it!";
+var numSpaces = Math.floor((maxLineWidth - warning.length) / 2);
+warning = chalk.bgHex(WARNING_COLOR).hex("#FFFFFF")(warning);
+warning = wrapStrWithSpaces(warning, numSpaces);
+
+boxContent = logo + "\n" + title + "\n" + promptContent + "\n" + warning;
+console.log(boxen(boxContent, boxenOptions));
 
 
 function wrapStrWithSpacesToWidth(str, width) {
@@ -88,3 +106,11 @@ function wrapStrWithSpacesToWidth(str, width) {
 function wrapStrWithSpaces(str, numSpaces) {
     return " ".repeat(numSpaces) + str + " ".repeat(numSpaces);
 }
+
+// var testStr = chalk.hex("#2D90D8")("0123456789")
+// console.log(testStr)
+// console.log(typeof(testStr))
+// console.log(testStr.length)
+// for (var i = 0; i < testStr.length; i++) {
+//     console.log(testStr[i]);
+// }
