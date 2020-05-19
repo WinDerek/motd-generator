@@ -18,7 +18,7 @@ Then you can move the generated file `motd` to `/etc/motd`.
 
 Here I use it to show a message for anyone who logs into the server of our lab.
 
-![](./motd.png | width=400)
+<img src="./motd.png" width="400" />
 
 You can modify the content in `index.js` and execute the commands specified in previous section to customize your own motd (Message Of The Day)!
 
