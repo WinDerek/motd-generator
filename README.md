@@ -4,7 +4,7 @@ Sometimes your want to show colorful text in the Message-Of-The-Day (motd), but 
 
 ## Usage
 
-First, clonse this repository and install all the npm packages needed. Node.js and NPM are required.
+First, clone this repository and install all the npm packages needed. Node.js and NPM are required.
 
 ```shell
 $ git clone https://github.com/DerekDick/motd-generator.git
