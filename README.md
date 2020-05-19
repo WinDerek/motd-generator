@@ -4,13 +4,19 @@ Generate the Message Of The Day file for Unix systems: `/etc/motd` easily.
 
 ## Usage
 
+First, install all the npm packages needed. Node.js and NPM are required.
+
+```shell
+$ npm install
+```
+
+Next, generate the motd file and move it to `/etc/motd`.
+
 ```shell
 $ script -q /dev/null -c "node ." > motd
 $ cat motd # Check if the output is as expected
 $ sudo mv ./motd /etc/motd # Replace the original motd file with the generated one
 ```
-
-Then you can move the generated file `motd` to `/etc/motd`.
 
 > `script` is a utility program in Linux kernel and you do not need to install any other packages.
 
