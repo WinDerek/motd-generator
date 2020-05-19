@@ -1,6 +1,6 @@
-# motd-generator
+# An Message-Of-The-Day (motd) generator
 
-Generate the Message Of The Day file for Unix systems: `/etc/motd` easily.
+Sometimes your want to show colorful text in the Message-Of-The-Day (motd), but you cannot edit the file in some plain text editor. This tool allows you to generate the Message-Of-The-Day (motd) file for Unix systems: `/etc/motd` easily!
 
 ## Usage
 
