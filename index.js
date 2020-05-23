@@ -2,35 +2,11 @@ const boxen = require('boxen');
 const figlet = require('figlet');
 const chalk = require("chalk");
 
-const LOGO_COLOR = "#00e640";
-const BORDER_COLOR = "#00e640";
+const LOGO_COLOR = "#125593";
+const BORDER_COLOR = "#125593";
 const TITLE_COLOR = "#00e640";
 const PROMPT_COLOR = "#ecf0f1";
 const WARNING_COLOR = "#cf000f";
-
-var selectedFonts = [ 'Alpha', 'Big', 'DOS Rebel', 'Fender', 'Larry 3D', 'Larry 3D 2', 'Lean', '' ]
-
-// figlet.fonts(function(err, fonts) {
-//     if (err) {
-//         console.log('something went wrong...');
-//         console.dir(err);
-//         return;
-//     }
-//     // console.dir(fonts, { 'maxArrayLength': null });
-
-//     for (var i = 0; i < fonts.length; i++) {
-//         var font = fonts[i];
-//         var data = figlet.textSync('IID', { font: font }, function(err, data) {
-//             if (err) {
-//                 console.log('Something went wrong...');
-//                 console.dir(err);
-//                 return;
-//             }
-//         });
-//         console.log(font);
-//         console.log(data);
-//     }
-// });
 
 const boxenOptions = {
     padding: 0,
@@ -40,39 +16,28 @@ const boxenOptions = {
     backgroundColor: "black"
 };
 
-// for (var i = 0; i < selectedFonts.length; i++) {
-//     var font = selectedFonts[i];
-//     var data = figlet.textSync('IID', { font: font }, function(err, data) {
-//         if (err) {
-//             console.log('Something went wrong...');
-//             console.dir(err);
-//             return;
-//         }
-//     });
-//     console.log(font);
-//     console.log(data);
-// }
-
 // For logo
-var logo = figlet.textSync('IID', { font: 'Alpha' }, function(err, data) {
+var logo = figlet.textSync('IID', { font: 'DOS Rebel' }, function(err, data) {
     if (err) {
         console.log('Something went wrong...');
         console.dir(err);
         return;
     }
 });
-var maxLineWidth = 0;
+// Remove all the new lines at the begin and end of the logo
+logo = logo.replace(/^\s+|\s+$/g, '');
+var maxLineWidth = 76;
 var logoLines = logo.split("\n");
-for (var i = 0; i < logoLines.length; i++) {
-    var line = logoLines[i];
-    if (maxLineWidth < line.length) {
-        maxLineWidth = line.length;
-    }
+var logoContent = "";
+for (var i = 0; i < logoLines.length - 1; i++) {
+    var wrappedLine = wrapStrWithSpacesToWidth(logoLines[i], maxLineWidth);
+    logoContent += wrappedLine + "\n";
 }
-logo = chalk.hex(LOGO_COLOR)(logo);
+logoContent = "\n\n" + logoContent + "\n";
+logoContent = chalk.hex(LOGO_COLOR)(logoContent);
 
 // For title
-var title = "Welcome to robert-server of the IID lab!";
+var title = "Welcome to iid-server-0 of the IID lab!";
 title = wrapStrWithSpacesToWidth(title, maxLineWidth);
 title = chalk.hex(TITLE_COLOR)(title);
 
@@ -95,7 +60,7 @@ warning = chalk.bgHex(WARNING_COLOR).hex("#FFFFFF")(warning);
 warning = wrapStrWithSpaces(warning, numSpaces);
 
 
-boxContent = logo + "\n" + title + "\n" + promptContent + "\n" + warning;
+boxContent = logoContent + "\n" + title + "\n" + promptContent + "\n" + warning;
 console.log(boxen(boxContent, boxenOptions));
 
 function wrapStrWithSpacesToWidth(str, width) {
