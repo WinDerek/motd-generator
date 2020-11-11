@@ -37,7 +37,7 @@ logoContent = "\n\n" + logoContent + "\n";
 logoContent = chalk.hex(LOGO_COLOR)(logoContent);
 
 // For title
-var title = "Welcome to iid-server-0 of the IID lab!";
+var title = "Welcome to iid-server-1 of the IID lab!";
 title = wrapStrWithSpacesToWidth(title, maxLineWidth);
 title = chalk.hex(TITLE_COLOR)(title);
 
@@ -59,8 +59,14 @@ var numSpaces = Math.floor((maxLineWidth - warning.length) / 2);
 warning = chalk.bgHex(WARNING_COLOR).hex("#FFFFFF")(warning);
 warning = wrapStrWithSpaces(warning, numSpaces);
 
+// For docs
+var docs = "IID Docs: https://derekdick.github.io/iid-docs/";
+var numSpaces = Math.floor((maxLineWidth - docs.length) / 2);
+docs = chalk.hex(TITLE_COLOR)(docs);
+docs = wrapStrWithSpaces(docs, numSpaces);
 
-boxContent = logoContent + "\n" + title + "\n" + promptContent + "\n" + warning;
+
+boxContent = logoContent + "\n" + title + "\n" + promptContent + "\n" + warning + "\n" + docs;
 console.log(boxen(boxContent, boxenOptions));
 
 function wrapStrWithSpacesToWidth(str, width) {
