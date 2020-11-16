@@ -23,6 +23,8 @@ $ sudo mv ./motd /etc/motd # Replace the original motd file with the generated o
 > `script` is a utility program in Linux kernel and you do not need to install any other packages.
 > Currently the `script` on macOS is out dated, and doesn't support the `-c` option. I will try to get around it in future.
 
+The above motd file generation steps can also achieved by simply execute `make`.
+
 ## Example
 
 Here I use it to show a message for anyone who logs into the server of our lab.
